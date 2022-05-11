@@ -47,7 +47,8 @@ void FillRand(float** matrix, const int rows, const int cols)
 		matrix[i] = new float[rows];
 		for (int j = 0; j < cols; j++)
 		{
-			matrix[i][j] = rand() % 10 * pow(-1, rand() % 2);
+			cin >> matrix[i][j];
+		//	matrix[i][j] = rand() % 10 * pow(-1, rand() % 2);
 		}
 	}
 	PrintMatrix(matrix, rows, cols);
@@ -116,9 +117,9 @@ void GaussMethod(float** matrix, const int dim, bool inverse_matrix)
 	//cout << "===========Tr2=============" << endl;
 	Transponation(unit_matrix, dim, dim);
 	//cout << "==========================" << endl;
-	//PrintMatrix(matrix, dim, dim);
+	PrintMatrix(matrix, dim, dim);
 	//cout << "==========================" << endl;
-	//PrintMatrix(unit_matrix, dim, dim);
+	PrintMatrix(unit_matrix, dim, dim);
 	//cout << "==========================" << endl;
 	//cout << "========After triangle=======" << endl;
 	for (int i = 0; i < dim - 1; i++)
