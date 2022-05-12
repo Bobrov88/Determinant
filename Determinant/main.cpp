@@ -1,15 +1,15 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <math.h>
 #include <conio.h>
 using namespace std;
 
-#define ROWS_COUNT cout<<"\t Количество строк -> "
-#define COLS_COUNT cout<<"\t Количество столбцов -> "
-#define MATRIX "\n\t Матрица "
-#define RANDOMFILLED " заполнена случайными числами"
-#define ADD_SUB_CONDITIONS_FAILED cout<<"\t Размерность матриц не одинаковая!\n\t Сложение и вычитание не выполнено\n"
-#define DETERMINANT_CONDITIONS_FAILED cout<<"\t Для нахождения определителя и обратной матрицы\n\t количество строк и столбцов должны быть одинаково\n"
-#define MULT_CONDITIONS_FAILED cout<<"\t Количество столбцов матрицы А должны быть равно количеству строк матрицы В!"
+#define ROWS_COUNT cout<<"\t РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє -> "
+#define COLS_COUNT cout<<"\t РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ -> "
+#define MATRIX "\n\t РњР°С‚СЂРёС†Р° "
+#define RANDOMFILLED " Р·Р°РїРѕР»РЅРµРЅР° СЃР»СѓС‡Р°Р№РЅС‹РјРё С‡РёСЃР»Р°РјРё"
+#define ADD_SUB_CONDITIONS_FAILED cout<<"\t Р Р°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°С‚СЂРёС† РЅРµ РѕРґРёРЅР°РєРѕРІР°СЏ!\n\t РЎР»РѕР¶РµРЅРёРµ Рё РІС‹С‡РёС‚Р°РЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ\n"
+#define DETERMINANT_CONDITIONS_FAILED cout<<"\t Р”Р»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ Рё РѕР±СЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹\n\t РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє Рё СЃС‚РѕР»Р±С†РѕРІ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕРґРёРЅР°РєРѕРІРѕ\n"
+#define MULT_CONDITIONS_FAILED cout<<"\t РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РјР°С‚СЂРёС†С‹ Рђ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅРѕ РєРѕР»РёС‡РµСЃС‚РІСѓ СЃС‚СЂРѕРє РјР°С‚СЂРёС†С‹ Р’!"
 
 void PrintMatrix(float**, const int, const int);
 void GaussMethod(float**, float**, const int);
@@ -48,7 +48,7 @@ int main()
 	PrintMatrix(matrix_A, rows_1, cols_1);
 	cout << MATRIX << "B" << RANDOMFILLED << ": ";
 	PrintMatrix(matrix_B, rows_2, cols_2);
-	/* -------------Сложение и вычитание------------------ */
+	/* -------------РЎР»РѕР¶РµРЅРёРµ Рё РІС‹С‡РёС‚Р°РЅРёРµ------------------ */
 	if ((rows_1 == rows_2) && (cols_1 == cols_2))
 	{
 		float** result = new float* [rows_1];
@@ -61,7 +61,7 @@ int main()
 		Delete(result, rows_1);
 	}
 	else ADD_SUB_CONDITIONS_FAILED;
-	/*------------------- Умножение ----------------------*/
+	/*------------------- РЈРјРЅРѕР¶РµРЅРёРµ ----------------------*/
 	if (cols_1 == rows_2)
 	{
 		float** result = new float* [rows_1];
@@ -73,7 +73,7 @@ int main()
 		Delete(result, rows_1);
 	}
 	else MULT_CONDITIONS_FAILED;;
-	/*----- Определитель одной из матриц и обратная матрица ----*/
+	/*----- РћРїСЂРµРґРµР»РёС‚РµР»СЊ РѕРґРЅРѕР№ РёР· РјР°С‚СЂРёС† Рё РѕР±СЂР°С‚РЅР°СЏ РјР°С‚СЂРёС†Р° ----*/
 	if (rows_1 == cols_1)
 	{
 		float** unit_matrix = new float* [rows_1];
@@ -120,7 +120,7 @@ void PrintMatrix(float** matrix, const int rows, const int cols)
 void GaussMethod(float** matrix, float** unit_matrix, const int dim)
 {
 	float DETERMINANT = 1, koeff;
-	for (int i = 0; i < dim - 1; i++) // верхняя треугольная матрица
+	for (int i = 0; i < dim - 1; i++) // РІРµСЂС…РЅСЏСЏ С‚СЂРµСѓРіРѕР»СЊРЅР°СЏ РјР°С‚СЂРёС†Р°
 	{
 		koeff = matrix[i][i];
 		DETERMINANT *= koeff;
@@ -141,19 +141,19 @@ void GaussMethod(float** matrix, float** unit_matrix, const int dim)
 	}
 
 	DETERMINANT *= matrix[dim - 1][dim - 1];
-	cout << "\n\t Определитель матрицы А = " << DETERMINANT << endl;
+	cout << "\n\t РћРїСЂРµРґРµР»РёС‚РµР»СЊ РјР°С‚СЂРёС†С‹ Рђ = " << DETERMINANT << endl;
 	if (DETERMINANT == 0)
 	{
-		cout << "\t Так как определитель равен 0, обратной матрицы не существует" << endl;
+		cout << "\t РўР°Рє РєР°Рє РѕРїСЂРµРґРµР»РёС‚РµР»СЊ СЂР°РІРµРЅ 0, РѕР±СЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹ РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚" << endl;
 	}
 	else
 	{
-		for (int j = 0; j < dim; j++) // единицы на главной диагонали
+		for (int j = 0; j < dim; j++) // РµРґРёРЅРёС†С‹ РЅР° РіР»Р°РІРЅРѕР№ РґРёР°РіРѕРЅР°Р»Рё
 		{
 			unit_matrix[dim - 1][j] = unit_matrix[dim - 1][j] / matrix[dim - 1][dim - 1];
 		}
 		matrix[dim - 1][dim - 1] = 1;
-		for (int i = dim - 1; i > 0; i--) // нижняя треугольная матрица
+		for (int i = dim - 1; i > 0; i--) // РЅРёР¶РЅСЏСЏ С‚СЂРµСѓРіРѕР»СЊРЅР°СЏ РјР°С‚СЂРёС†Р°
 		{
 			float koeff = 1;
 			for (int j = i - 1; j >= 0; j--)
@@ -166,7 +166,7 @@ void GaussMethod(float** matrix, float** unit_matrix, const int dim)
 				}
 			}
 		}
-		cout << "\n\t Обратная матрица к матрице А = ";
+		cout << "\n\t РћР±СЂР°С‚РЅР°СЏ РјР°С‚СЂРёС†Р° Рє РјР°С‚СЂРёС†Рµ Рђ = ";
 		PrintMatrix(unit_matrix, dim, dim);
 	}
 }
