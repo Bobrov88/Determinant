@@ -104,20 +104,37 @@ void GaussMethod(float** matrix, const int dim, bool inverse_matrix)
 	PrintMatrix(unit_matrix, dim, dim);
 	for (int i = 0; i < dim - 1; i++)
 	{
-		float koeff = 1;
+		float koeff = matrix[i][i];
+		for (int j = 0; j < dim; j++)
+		{
+			matrix[i][j] = matrix[i][j] / koeff;
+			unit_matrix[i][j] = unit_matrix[i][j] / koeff;
+		}
+		koeff = 1; 
+		PrintMatrix(matrix, dim, dim);
+		PrintMatrix(unit_matrix, dim, dim);
+		cin >> a;
 		for (int j = i + 1; j < dim; j++)
 		{
 			koeff = matrix[j][i] / matrix[i][i] * (-1);
-			for (int k = i; k < dim; k++)
+			for (int k = 0; k < dim; k++)
 			{
 				matrix[j][k] = matrix[i][k] * koeff + matrix[j][k];
 				(inverse_matrix) ? (unit_matrix[j][k] = unit_matrix[i][k] * koeff + unit_matrix[j][k]) : unit_matrix[j][k];
 			}
 			PrintMatrix(matrix, dim, dim);
 			PrintMatrix(unit_matrix, dim, dim);
-		//	cin >> a;
+			cin >> a;
 		}
 	}
+	for (int j = 0; j < dim; j++)
+	{
+		unit_matrix[dim-1][j] = unit_matrix[dim-1][j] / matrix[dim-1][dim-1];
+	}		
+	matrix[dim - 1][dim - 1] = 1;
+	PrintMatrix(matrix, dim, dim);
+	PrintMatrix(unit_matrix, dim, dim);
+	cin >> a;
 	cout << "\nBack way"<<endl;
 	for (int i = dim-1; i > 0; i--)
 	{
@@ -125,30 +142,30 @@ void GaussMethod(float** matrix, const int dim, bool inverse_matrix)
 		for (int j = i - 1; j >= 0; j--)
 		{
 			koeff = matrix[j][i] / matrix[i][i] * (-1);
-			for (int k = i; k >= 0; k--)
+			for (int k = dim-1; k >= 0; k--)
 			{
 				matrix[j][k] = matrix[i][k] * koeff + matrix[j][k];
 				(inverse_matrix) ? (unit_matrix[j][k] = unit_matrix[i][k] * koeff + unit_matrix[j][k]) : unit_matrix[j][k];
 			}
 			PrintMatrix(matrix, dim, dim);
 			PrintMatrix(unit_matrix, dim, dim);
-		//	cin >> a;
+			cin >> a;
 		}
 	}
 	cout << "\n\nAfter backway" << endl;
 	PrintMatrix(matrix, dim, dim);
-	PrintMatrix(unit_matrix, dim, dim);
-	for (int i = 0; i < dim; i++)
-	{
-		for (int j = 0; j < dim; j++)
-		{
-			unit_matrix[i][j] = unit_matrix[i][j] / matrix[i][i];
-		}
-		matrix[i][i] = 1;
-	}
-	cout << "\n\nAter cutting diagonal" << endl;
-	PrintMatrix(matrix, dim, dim);
-	PrintMatrix(unit_matrix, dim, dim);
+	//PrintMatrix(unit_matrix, dim, dim);
+	//for (int i = 0; i < dim; i++)
+	//{
+	//	for (int j = 0; j < dim; j++)
+	//	{
+	//		unit_matrix[i][j] = unit_matrix[i][j] / matrix[i][i];
+	//	}
+	//	matrix[i][i] = 1;
+	//}
+	//cout << "\n\nAter cutting diagonal" << endl;
+	//PrintMatrix(matrix, dim, dim);
+	//PrintMatrix(unit_matrix, dim, dim);
 	cout << "\n\n temp is:" << endl;
 	PrintMatrix(temp_matrix, dim, dim);
 	cout << "\n\n MUL" << endl;
