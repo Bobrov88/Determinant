@@ -3,6 +3,14 @@
 #include <conio.h>
 using namespace std;
 
+#define ROWS_COUNT cout<<"\t Количество строк -> "
+#define COLS_COUNT cout<<"\t Количество столбцов -> "
+#define MATRIX "\n\t Матрица "
+#define RANDOMFILLED " заполнена случайными числами"
+#define ADD_SUB_CONDITIONS_FAILED cout<<"\t Размерность матриц не одинаковая!\n\t Сложение и вычитание не выполнено\n"
+#define DETERMINANT_CONDITIONS_FAILED cout<<"\t Для нахождения определителя и обратной матрицы\n\t количество строк и столбцов должны быть одинаково\n"
+#define MULT_CONDITIONS_FAILED cout<<"\t Количество столбцов матрицы А должны быть равно количеству строк матрицы В!"
+
 void PrintMatrix(float**, const int, const int);
 void GaussMethod(float**, float**, const int);
 void Matrix_Mul(float**, float**, float**, const int, const int, const int);
@@ -15,12 +23,12 @@ int main()
 	setlocale(LC_ALL, "");
 	int rows_1, cols_1, rows_2, cols_2;
 	float** matrix_A = nullptr, ** matrix_B = nullptr;
-	cout << "\t Матрица A:\n";
-	cout << "\t Кол-во строк -> "; cin >> rows_1;
-	cout << "\t Кол-во столбцов -> "; cin >> cols_1;
-	cout << "\t Матрица B:\n";
-	cout << "\t Кол-во строк -> "; cin >> rows_2;
-	cout << "\t Кол-во столбцов -> "; cin >> cols_2;
+	cout << MATRIX << "A:\n";
+	ROWS_COUNT; cin >> rows_1;
+	COLS_COUNT; cin >> cols_1;
+	cout << MATRIX << "B:\n";
+	ROWS_COUNT; cin >> rows_2;
+	COLS_COUNT; cin >> cols_2;
 	matrix_A = new float* [rows_1];
 	matrix_B = new float* [rows_2];
 
@@ -36,11 +44,11 @@ int main()
 	}
 	FillRand(matrix_B, rows_2, cols_2);
 
-	cout << "\t Матрица 1 заполнена случайными числами:";
+	cout << MATRIX << "A" << RANDOMFILLED << ": ";
 	PrintMatrix(matrix_A, rows_1, cols_1);
-	cout << "\t Матрица 2 заполнена случайными числами:";
+	cout << MATRIX << "B" << RANDOMFILLED << ": ";
 	PrintMatrix(matrix_B, rows_2, cols_2);
-	//////////////////// Сложение и вычитание /////////////////////
+	/* -------------Сложение и вычитание------------------ */
 	if ((rows_1 == rows_2) && (cols_1 == cols_2))
 	{
 		float** result = new float* [rows_1];
@@ -52,12 +60,8 @@ int main()
 		Matrix_Add_Sub(matrix_A, matrix_B, result, rows_1, cols_1, '-');
 		Delete(result, rows_1);
 	}
-	else
-	{
-		cout << "\t Размерность матриц не одинаковая!" << endl;
-		cout << "\t Сложение и вычитание не выполнено" << endl;
-	}
-	//////////////////// Умножение /////////////////////
+	else ADD_SUB_CONDITIONS_FAILED;
+	/*------------------- Умножение ----------------------*/
 	if (cols_1 == rows_2)
 	{
 		float** result = new float* [rows_1];
@@ -68,8 +72,8 @@ int main()
 		Matrix_Mul(matrix_A, matrix_B, result, rows_1, cols_2, rows_2);
 		Delete(result, rows_1);
 	}
-	else cout << "\t Количество столбцов матрицы А должны быть равно количеству строк матрицы В!" << endl;
-	//////////////////// Определитель одной из матриц и обратная матрица /////////////////////
+	else MULT_CONDITIONS_FAILED;;
+	/*----- Определитель одной из матриц и обратная матрица ----*/
 	if (rows_1 == cols_1)
 	{
 		float** unit_matrix = new float* [rows_1];
@@ -81,12 +85,8 @@ int main()
 		GaussMethod(matrix_A, unit_matrix, rows_1);
 		Delete(unit_matrix, rows_1);
 	}
-	else
-	{
-		cout << "\t Для нахождения определителя и обратной матрицы" << endl;
-		cout << "\t количество строк и столбцов должны быть одинаково" << endl;
-	}
-
+	else DETERMINANT_CONDITIONS_FAILED;
+	
 	Delete(matrix_A, rows_1);
 	Delete(matrix_B, rows_2);
 	return 0;
@@ -141,7 +141,7 @@ void GaussMethod(float** matrix, float** unit_matrix, const int dim)
 	}
 
 	DETERMINANT *= matrix[dim - 1][dim - 1];
-	cout << "\t Определитель матрицы А = " << DETERMINANT << endl;
+	cout << "\n\t Определитель матрицы А = " << DETERMINANT << endl;
 	if (DETERMINANT == 0)
 	{
 		cout << "\t Так как определитель равен 0, обратной матрицы не существует" << endl;
