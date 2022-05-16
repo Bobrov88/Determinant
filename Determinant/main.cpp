@@ -5,7 +5,7 @@ using namespace std;
 
 #define ROWS_COUNT cout<<"\t Количество строк -> "
 #define COLS_COUNT cout<<"\t Количество столбцов -> "
-#define MATRIX "\n\t Матрица "
+#define MATRIX "\n\tМатрица "
 #define RANDOMFILLED " заполнена случайными числами"
 #define ADD_SUB_CONDITIONS_FAILED cout<<"\t Размерность матриц не одинаковая!\n\t Сложение и вычитание невозможно\n"
 #define DETERMINANT_CONDITIONS_FAILED cout<<"\t Для нахождения определителя и обратной матрицы\n\t количество строк и столбцов должны быть одинаково\n"
@@ -141,10 +141,10 @@ void GaussMethod(float** matrix, float** unit_matrix, const int dim)
 	}
 
 	DETERMINANT *= matrix[dim - 1][dim - 1];
-	cout << "\n\t Определитель матрицы А = " << DETERMINANT << endl;
+	cout << "\n\tОпределитель матрицы А = " << DETERMINANT << endl;
 	if (DETERMINANT == 0)
 	{
-		cout << "\t Так как определитель равен 0, обратной матрицы не существует" << endl;
+		cout << "\tТак как определитель равен 0, обратной матрицы не существует" << endl;
 	}
 	else
 	{
@@ -166,7 +166,7 @@ void GaussMethod(float** matrix, float** unit_matrix, const int dim)
 				}
 			}
 		}
-		cout << "\n\t Обратная матрица к матрице А = ";
+		cout << "\n\tОбратная матрица к матрице А = ";
 		PrintMatrix(unit_matrix, dim, dim);
 	}
 }
@@ -183,7 +183,7 @@ void Matrix_Mul(float** matrix1, float** matrix2, float** result, const int rows
 			}
 		}
 	}
-	cout << "\n\t A x B = ";
+	cout << "\n\tA x B = ";
 	PrintMatrix(result, rows, cols);
 }
 
@@ -196,7 +196,7 @@ void Matrix_Add_Sub(float** matrix1, float** matrix2, float **result, const int 
 			result[i][j] = (op == '+') ? (matrix1[i][j] + matrix2[i][j]) : (matrix1[i][j] - matrix2[i][j]);
 		}
 	}
-	cout << "\n\t A "<<op<<" B = ";
+	cout << "\n\tA "<<op<<" B = ";
 	PrintMatrix(result, rows, cols);
 }
 
