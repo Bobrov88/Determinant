@@ -87,8 +87,8 @@ int main()
 	}
 	else DETERMINANT_CONDITIONS_FAILED;
 	
-	Delete(matrix_A, rows_1);
-	Delete(matrix_B, rows_2);
+//	Delete(matrix_A, rows_1);
+//	Delete(matrix_B, rows_2);
 	return 0;
 }
 
