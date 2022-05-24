@@ -34,13 +34,13 @@ int main()
 
 	for (int i = 0; i < rows_1; i++)
 	{
-		matrix_A[i] = new float[rows_1];
+		matrix_A[i] = new float[cols_1];
 	}
 	FillRand(matrix_A, rows_1, cols_1);
 
 	for (int i = 0; i < rows_2; i++)
 	{
-		matrix_B[i] = new float[rows_2];
+		matrix_B[i] = new float[cols_2];
 	}
 	FillRand(matrix_B, rows_2, cols_2);
 
@@ -206,6 +206,7 @@ void Delete(float **matrix, const int rows)
 	{
 		delete[]matrix[i];
 	}
+	delete[]matrix;
 }
 
 
